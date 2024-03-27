@@ -1,0 +1,77 @@
+version: "2.24.6"
+
+services:
+  slurmdbd:
+    image: slurm-cluster:rocky8
+    container_name: slurmdbd
+    hostname: slurmdbd
+    volumes:
+      - slurm_jobdir:/data
+      - etc_munge:/etc/munge
+    expose:
+      - "6819"
+    networks:
+      slurm_network:
+        ipv4_address: 192.168.0.19
+    
+
+  slurmctld:
+    image: slurm-cluster:rocky8
+    container_name: slurmctld
+    hostname: slurmctld
+    volumes:
+      - slurm_jobdir:/data
+      - etc_munge:/etc/munge
+    expose:
+      - "6817"
+    depends_on:
+      - "slurmdbd"
+    networks:
+      slurm_network:
+        ipv4_address: 192.168.0.20
+
+
+  node1:
+    image: slurm-cluster:rocky8
+    hostname: node1
+    container_name: node1
+    volumes:
+      - slurm_jobdir:/data
+      - etc_munge:/etc/munge
+    expose:
+      - "6818"
+    depends_on:
+      - "slurmctld"
+    networks:
+      slurm_network:
+        ipv4_address: 192.168.0.21
+
+  node2:
+    image: slurm-cluster:rocky8
+    hostname: node2
+    container_name: node2
+    volumes:
+      - slurm_jobdir:/data
+      - etc_munge:/etc/munge
+    expose:
+      - "6818"
+    depends_on:
+      - "slurmctld"
+    networks:
+      slurm_network:
+        ipv4_address: 192.168.0.22
+
+volumes:
+  etc_munge:
+  etc_slurm:
+  slurm_jobdir:
+  var_lib_mysql:
+  var_log_slurm:
+
+networks:
+  slurm_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16
+          gateway: 192.168.0.1
