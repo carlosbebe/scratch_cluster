@@ -1,18 +1,36 @@
 version: "2.24.6"
 
 services:
+  mysql:
+    image: mariadb:10.10
+    hostname: mysql
+    container_name: mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: slurm_acct_db
+      MYSQL_USER: slurm
+      MYSQL_PASSWORD: 1234
+    volumes:
+      - var_lib_mysql:/var/lib/mysql
+
   slurmdbd:
     image: slurm-cluster:rocky8
     container_name: slurmdbd
     hostname: slurmdbd
+  #  environment:
+  #    MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+  #    MYSQL_DATABASE: slurm_acct_db
+  #    MYSQL_USER: slurm
+  #    MYSQL_PASSWORD: password
     volumes:
+  #    - var_lib_mysql:/var/lib/mysql
       - slurm_jobdir:/data
       - etc_munge:/etc/munge
     expose:
       - "6819"
-    networks:
-      slurm_network:
-        ipv4_address: 192.168.0.19
+    #networks:
+    #  slurm:
+    #    ipv4_address: 192.168.0.19
     
 
   slurmctld:
@@ -26,9 +44,9 @@ services:
       - "6817"
     depends_on:
       - "slurmdbd"
-    networks:
-      slurm_network:
-        ipv4_address: 192.168.0.20
+    #networks:
+    #  slurm:
+    #    ipv4_address: 192.168.0.20
 
 
   node1:
@@ -42,9 +60,9 @@ services:
       - "6818"
     depends_on:
       - "slurmctld"
-    networks:
-      slurm_network:
-        ipv4_address: 192.168.0.21
+  #  networks:
+  #    slurm:
+  #      ipv4_address: 192.168.0.21
 
   node2:
     image: slurm-cluster:rocky8
@@ -57,9 +75,9 @@ services:
       - "6818"
     depends_on:
       - "slurmctld"
-    networks:
-      slurm_network:
-        ipv4_address: 192.168.0.22
+   # networks:
+   #   slurm:
+   #     ipv4_address: 192.168.0.22
 
 volumes:
   etc_munge:
@@ -67,11 +85,24 @@ volumes:
   slurm_jobdir:
   var_lib_mysql:
   var_log_slurm:
+ # var_lib_mysql:
+#networks:
+#  slurm:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 192.168.0.0/16
+#          gateway: 192.168.0.1
 
-networks:
-  slurm_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/16
-          gateway: 192.168.0.1
+# mysql:
+#    image: mariadb:10.10
+#    hostname: mysql
+#    container_name: mysql
+#    environment:
+#      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+#      MYSQL_DATABASE: slurm_acct_db
+#      MYSQL_USER: slurm
+#      MYSQL_PASSWORD: password
+#    volumes:
+#      - var_lib_mysql:/var/lib/mysql
+
