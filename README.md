@@ -6,7 +6,11 @@ This project presents a slurm cluster using docker containers.
 
 * SLURM: It stands for Simple Linux Utility for Resource Management. It is a open-source cluster management and batch scheduler for linux hpc clusters.
 
+
 ## Project Content
+Docker Version
+SLURM Version
+OS Version
 
 * Dockerfile
 * docker-compose.yml
@@ -14,8 +18,9 @@ This project presents a slurm cluster using docker containers.
 + slurmdbd.conf
 + start_services.sh 
 
-## Cluster Arquitecture
+## Cluster Architecture
 !!!!!!!!!!!!! Add Graph!!!!!!!!!!!!!!!!!
+![Architecture](Architecture.png)
 
 The compose file will run the following containers:
 
