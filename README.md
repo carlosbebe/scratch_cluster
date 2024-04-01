@@ -19,17 +19,19 @@ OS Version
 + start_services.sh 
 
 ## Cluster Architecture
-!!!!!!!!!!!!! Add Graph!!!!!!!!!!!!!!!!!
-![Architecture](Architecture.png)
 
 The compose file will run the following containers:
 
-* mysql
-* slurmdbd   
-* slurmctld  
-* (slurmd)node1 - Compute node.
-* (slurmd)node2 - Compute node. 
+* mysql:
+  Slurm database.
+* slurmdbd:
+  Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
+* slurmctld:
+  It a centralized manager that monitors resources and work.
+* slurmd:
+  It is a compute that waits for jobs, executes them and return the status. 
 
+![Architecture](Architecture.png)
 
 ## Get Started 
 
@@ -38,7 +40,6 @@ The compose file will run the following containers:
 docker build -t slurm-cluster:rocky8 .
 docker compose up -d
 docker exec -it slurmctld bash
-
 docker-compose logs -f
 docker ps
 docker images
