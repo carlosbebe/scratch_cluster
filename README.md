@@ -1,15 +1,21 @@
-### Slurm Docker Project
+# Slurm Docker Project
 
 This project presents a slurm cluster using docker containers.
 
-Docker compose allows us to create an environment from docker images previously built. Docker Composer will create containers as well an internal network to communicate the components.
+* Docker compose: It allows to create an environment from docker images previously built. Docker Composer will create containers as well an internal network to communicate the components.
 
-## Slurm
+* SLURM: It stands for Simple Linux Utility for Resource Management. It is a open-source cluster management and batch scheduler for linux hpc clusters.
 
-SLURM stands for Simple Linux Utility for Resource Management. It is a open-source cluster management and batch scheduler for linux hpc clusters.
+## Project Content
+
+* Dockerfile
+* docker-compose.yml
++ slurm.conf 
++ slurmdbd.conf
++ start_services.sh 
 
 ## Cluster Arquitecture
-
+!!!!!!!!!!!!! Add Graph!!!!!!!!!!!!!!!!!
 
 The compose file will run the following containers:
 
@@ -20,9 +26,8 @@ The compose file will run the following containers:
 * (slurmd)node2 - Compute node. 
 
 
-## Building the Image
+## Get Started 
 
-Build the image locally:
 
 ```console
 docker build -t slurm-cluster:rocky8 .
