@@ -8,8 +8,9 @@ This project presents a slurm cluster using docker containers.
 
 
 ## Project Content
-Docker Version
-SLURM Version
+Docker Version: 25.0.3
+Docker Compose Version: 2.24.6
+SLURM Version: slurm-21-08-6-1
 OS Version
 
 * Dockerfile
@@ -30,6 +31,7 @@ The compose file will run the following containers:
   It a centralized manager that monitors resources and work.
 * slurmd:
   It is a compute that waits for jobs, executes them and return the status. 
+* scratch_cluster_default: Internal Network
 
 ![Architecture](Architecture.png)
 
