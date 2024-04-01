@@ -80,3 +80,6 @@ RUN chown ${USER}:slurm -R /home/${USER}/.ssh/ \
 RUN rm /run/nologin
 CMD ["slurmdbd"]
 CMD ["/usr/sbin/sshd", "-D"]
+COPY start_services.sh /root/
+ENTRYPOINT ["/root/start_services.sh"]
+
