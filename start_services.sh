@@ -3,6 +3,7 @@
 set -ex
 if [ $HOSTNAME == slurmdbd ]
 then
+    chmod 777 /data
     /usr/sbin/sshd -D &
     gosu munge /usr/sbin/munged
     sleep 40
@@ -11,6 +12,7 @@ fi
 
 if [ $HOSTNAME == slurmctld ]
 then
+    chmod 777 /data
     /usr/sbin/sshd -D &
     gosu munge /usr/sbin/munged
     sleep 50
@@ -19,6 +21,7 @@ fi
 
 if [ $HOSTNAME == node1 ] || [ $HOSTNAME == node2 ] 
 then
+    chmod 777 /data
     /usr/sbin/sshd -D &
     gosu munge /usr/sbin/munged
     sleep 60
