@@ -11,42 +11,41 @@ This project presents a slurm cluster using docker containers.
 
 ### Components versions
 
-* Docker:           25.0.3
-* Docker Compose:   2.24.6
-* SLURM:            21.08.6.1
-* OS:               Rocky Linux release 8.9 (Green Obsidian)
+* **Docker:**           25.0.3
+* **Docker Compose:**   2.24.6
+* **SLURM:**            21.08.6.1
+* **OS:**               Rocky Linux release 8.9 (Green Obsidian)
 
 ### Files
 
-* Dockerfile
-* docker-compose.yml
-+ slurm.conf 
-+ slurmdbd.conf
-+ start_services.sh 
+* **Dockerfile**
+* **docker-compose.yml**
+* **slurm.conf** 
+* **slurmdbd.conf**
+* **start_services.sh** 
 
 ## Cluster Architecture
 
 The compose file will run the following containers:
 
-* **mysql:**
-  Slurm database.
-* **slurmdbd:**
-  Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
-* **slurmctld:**
-  It a centralized manager that monitors resources and work.
-* **slurmd:**
-  It is a compute node daemon that waits for jobs, executes them and return the status. 
-* scratch_cluster_default: Internal Network
+* **mysql:** Slurm database.
+* **slurmdbd:** Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
+* **slurmctld:** It a centralized manager that monitors resources and work.
+* **slurmd:** It is a compute node daemon that waits for jobs, executes them and return the status. 
+* **scratch_cluster_default:** Internal Network
 
 ![Architecture](Architecture.png)
 
 
 ## Get Started 
 ```
-git clone 
+git clone https://github.com/carlosbebe/scratch_cluster
 ```
+# Build base rocky image
 ```console
 docker build -t slurm-cluster:rocky8 .
+```
+```console
 docker compose up -d
 docker exec -it slurmctld bash
 docker exec -u carlos -it slurmctld bash
