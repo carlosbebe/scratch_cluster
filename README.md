@@ -38,38 +38,42 @@ The compose file will run the following containers:
 
 
 ## Get Started 
+
+* Clone the repository
 ```
 git clone https://github.com/carlosbebe/scratch_cluster
 ```
-# Build base rocky image
-```console
+* Build base rocky image
+```
 docker build -t slurm-cluster:rocky8 .
 ```
-```console
+* Initiate docker composer
+```
 docker compose up -d
+```
+```
 docker exec -it slurmctld bash
 docker exec -u carlos -it slurmctld bash
+```
+
+* Other useful commands
+
+```
 docker-compose logs -f
 docker ps
 docker images
 docker rmi -f 27a7f9a9ac17
 docker system prune
-docker exec slurmctld bash -c "/usr/bin/sacctmgr --immediate add cluster name=linux"
+docker exec slurmctld bash -c "`linux command"
+docker compose stop
+docker compose start
+docker compose restart
 ```
 
 
 
-```console
-docker-compose stop
-docker-compose start
-```
-
-```console
-docker-compose restart
-```
 # TODO
-* Permissions data
+* Explain scope. security not relevant
 * Documentation
 * Makeup
-* hardening,
-* Add users slurm and system
+* hardenig
