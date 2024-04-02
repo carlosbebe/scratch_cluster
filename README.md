@@ -62,7 +62,6 @@ docker-compose restart
 ```
 # TODO
 * Permissions data
-* start services automatically - mysql->slurmdbd->slurmctld->slurmd
 * Documentation
 * Makeup
 * ssh hardening, not allow ssh sin reserva

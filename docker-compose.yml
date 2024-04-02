@@ -77,10 +77,10 @@ services:
 
 volumes:
   etc_munge:
-  etc_slurm:
+#  etc_slurm:
   slurm_jobdir:
   var_lib_mysql:
-  var_log_slurm:
+#  var_log_slurm:
 #networks:
 #  slurm:
 #    driver: bridge

@@ -77,12 +77,9 @@ RUN chown ${USER}:slurm -R /home/${USER}/.ssh/ \
     && chmod 600 /home/${USER}/.ssh/authorized_keys \
     && chmod 600 /home/${USER}/.ssh/id_rsa*
 
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
-
-RUN rm /run/nologin
-#CMD ["slurmdbd"]
-COPY start_services.sh /root/
-ENTRYPOINT ["/root/start_services.sh"]
 #EXPOSE 22
 #CMD ["/usr/sbin/sshd", "-D"]
+
+RUN rm /run/nologin
+COPY start_services.sh /root/
+ENTRYPOINT ["/root/start_services.sh"]
