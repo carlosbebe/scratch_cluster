@@ -64,10 +64,16 @@ docker build -t slurm-cluster:rocky8 .
 ```
 docker compose up -d
 ```
-* Clone the repository
+* Accessing the loggin node
 ```
 docker exec -it slurmctld bash
 docker exec -u carlos -it slurmctld bash
+```
+
+* Testing slurm
+```
+sinfo
+srun hostname
 ```
 
 * Other useful commands
@@ -83,7 +89,7 @@ docker compose stop
 docker compose start
 docker compose restart
 ```
-## Additional Components - Future work
+## Additional Components that can be implemented
 
 * High Availability
 * slurmrestd 
