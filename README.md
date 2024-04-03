@@ -9,15 +9,18 @@ This project presents a slurm cluster using docker containers.
 
 ## Project Content
 
-### Components versions
+### Overview
+
+This implementation has been tested in mac OS 12.7.4 running the following component versions:
 
 * **Docker:**           25.0.3
 * **Docker Compose:**   2.24.6
 * **SLURM:**            21.08.6.1
 * **OS:**               Rocky Linux release 8.9 (Green Obsidian)
 
-
 ## Cluster Architecture
+
+This graph depicts the slurm cluster architecture presented.
 
 ![Architecture](Architecture.png)
 
@@ -27,15 +30,16 @@ This project presents a slurm cluster using docker containers.
 * **slurmd:** Compute node daemon that waits for jobs, executes them and return the status. 
 * **scratch_cluster_default:** Internal virtual network created by docker.
 
-
 ### Files
 
 * **Dockerfile**
 
-Contains the necessary commands to assemble a base image (slurm-cluster:rocky8). Packages installation, configuration files among other.
+Contains the necessary commands to assemble a base image (slurm-cluster:rocky8). Essential packages installed via yum, 
+slurm configuration and installation, user creation and basic system configuration.
 * **docker-compose.yml**
 
-In this YAML file the cluster architecture is define to be later deployed in containers.
+In this YAML file the cluster architecture is define to be later deployed in containers. Five services are deployed: a mysql database, a slurmdb daemon, a slurmctld daemon and two slurmd services known as compute nodes. A **data** volume is create and shared throughout the loggin and compute nodes 
+in order to execute jobs. Other volumes such as etc_munge and var_lib_mysql are also created.
 * **slurm.conf** 
 
 Predefined ASCII file that escribes general slurm configuration information: nodes, partitions etc.
@@ -44,7 +48,7 @@ Predefined ASCII file that escribes general slurm configuration information: nod
 Predefined file containing SLurm Database Daemon configuration information. This file is to be located in the same directory as slurm.conf file.
 * **start_services.sh** 
 
-Once the containers are launched, this script will initiate several services: sshd, munge, slurm services.
+Once the containers are launched, this script will initiate relevant services within each container: sshd, munge, slurm services.
 
 ## Get Started 
 
