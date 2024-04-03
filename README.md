@@ -25,7 +25,7 @@ This graph depicts the slurm cluster architecture presented.
 ![Architecture](Architecture.png)
 
 * **mysql:** Slurm database.
-* **slurmdbd:** Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
+* **slurmdbd:** Slurm DataBase Daemon is in charge of recording accounting clusters information in a single database.
 * **slurmctld:** Centralized manager that monitors resources and work.
 * **slurmd:** Compute node daemon that waits for jobs, executes them and return the status. 
 * **scratch_cluster_default:** Internal virtual network created by docker.
@@ -99,5 +99,5 @@ docker compose restart
 * slurmrestd 
 * Monitoring system
 * ldap authentication
-* Security hardening 
+* Security hardening: linux firewall, ssh, etc. 
 
