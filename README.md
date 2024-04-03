@@ -16,6 +16,18 @@ This project presents a slurm cluster using docker containers.
 * **SLURM:**            21.08.6.1
 * **OS:**               Rocky Linux release 8.9 (Green Obsidian)
 
+
+## Cluster Architecture
+
+![Architecture](Architecture.png)
+
+* **mysql:** Slurm database.
+* **slurmdbd:** Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
+* **slurmctld:** Centralized manager that monitors resources and work.
+* **slurmd:** Compute node daemon that waits for jobs, executes them and return the status. 
+* **scratch_cluster_default:** Internal virtual network created by docker.
+
+
 ### Files
 
 * **Dockerfile**
@@ -23,19 +35,6 @@ This project presents a slurm cluster using docker containers.
 * **slurm.conf** 
 * **slurmdbd.conf**
 * **start_services.sh** 
-
-## Cluster Architecture
-
-The compose file will run the following containers:
-
-* **mysql:** Slurm database.
-* **slurmdbd:** Slurm DataBase Daemon is in change of recording accounting clusters information in a single database.
-* **slurmctld:** It a centralized manager that monitors resources and work.
-* **slurmd:** It is a compute node daemon that waits for jobs, executes them and return the status. 
-* **scratch_cluster_default:** Internal Network
-
-![Architecture](Architecture.png)
-
 
 ## Get Started 
 
@@ -51,6 +50,7 @@ docker build -t slurm-cluster:rocky8 .
 ```
 docker compose up -d
 ```
+* Clone the repository
 ```
 docker exec -it slurmctld bash
 docker exec -u carlos -it slurmctld bash
@@ -70,10 +70,3 @@ docker compose start
 docker compose restart
 ```
 
-
-
-# TODO
-* Explain scope. security not relevant
-* Documentation
-* Makeup
-* hardenig
