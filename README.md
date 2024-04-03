@@ -42,6 +42,10 @@ This project presents a slurm cluster using docker containers.
 ```
 git clone https://github.com/carlosbebe/scratch_cluster
 ```
+* Create a sshk key pair
+```
+ssh-keygen -b 2048 -t rsa -f /Users/Carlos/scratch_cluster/id_rsa -q -N ""
+```
 * Build base rocky image
 ```
 docker build -t slurm-cluster:rocky8 .
@@ -69,4 +73,10 @@ docker compose stop
 docker compose start
 docker compose restart
 ```
+## Additional components that can be included
+
+* ldap authentication
+* Security hardening 
+* slurmrestd 
+
 
