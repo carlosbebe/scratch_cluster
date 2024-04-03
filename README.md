@@ -31,15 +31,15 @@ This project presents a slurm cluster using docker containers.
 ### Files
 
 * **Dockerfile**
-- Contains the necessary commands to assemble a base image (slurm-cluster:rocky8). Packages installation, configuration files among other.
+ Contains the necessary commands to assemble a base image (slurm-cluster:rocky8). Packages installation, configuration files among other.
 * **docker-compose.yml**
-- In this YAML file the cluster architecture is define to be later deployed in containers.
+ In this YAML file the cluster architecture is define to be later deployed in containers.
 * **slurm.conf** 
-- Predefined ASCII file that escribes general slurm configuration information: nodes, partitions etc.
+ Predefined ASCII file that escribes general slurm configuration information: nodes, partitions etc.
 * **slurmdbd.conf**
-- Predefined file containing SLurm Database Daemon configuration information. This file is to be located in the same directory as slurm.conf file.
+ Predefined file containing SLurm Database Daemon configuration information. This file is to be located in the same directory as slurm.conf file.
 * **start_services.sh** 
-- Once the containers are launched, this script will initiate several services: sshd, munge, slurm services.
+ Once the containers are launched, this script will initiate several services: sshd, munge, slurm services.
 
 ## Get Started 
 
@@ -78,10 +78,11 @@ docker compose stop
 docker compose start
 docker compose restart
 ```
-## Additional components that can be included
+## Additional Components - Future work
 
-* ldap authentication
-* Security hardening 
+* High Availability
 * slurmrestd 
 * Monitoring system
+* ldap authentication
+* Security hardening 
 
